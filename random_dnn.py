@@ -184,14 +184,6 @@ if __name__ == "__main__":
             root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=50000, test_begin=0,
             test_end=nb_traces_attacks)
 
-    elif dataset == 'ASCAD_k0':
-        byte = 0
-        data_root = 'Dataset/ASCAD/ASCAD_k0.h5'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_ascad(
-            root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=50000, test_begin=0,
-            test_end=nb_traces_attacks)
-
-
     elif dataset == 'ASCAD_variable':
         byte = 2
         data_root = 'Dataset/ASCAD/ASCAD_variable.h5'
@@ -219,36 +211,6 @@ if __name__ == "__main__":
         data_root = 'Dataset/CTF2018/ches_ctf.h5'
         (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_ctf(
             root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=45000, test_begin=0,
-            test_end=nb_traces_attacks)
-    elif dataset == 'Chipwhisperer':
-        data_root = 'Dataset/Chipwhisperer/'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (
-        plt_profiling, plt_attack), correct_key = load_chipwhisperer(
-            root + data_root + '/', leakage_model=leakage)
-    elif dataset == 'Chipwhisperer_desync25':
-        data_root = 'Dataset/Chipwhisperer/'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_chipwhisperer_desync(root + data_root + '/', desync_lvl=25,
-                                                                                leakage_model=leakage)
-    elif dataset == 'Chipwhisperer_desync50':
-        data_root = 'Dataset/Chipwhisperer/'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_chipwhisperer_desync(root + data_root + '/', desync_lvl=50,
-                                                                                leakage_model=leakage)
-
-
-    elif dataset == 'AES_HD_ext':
-        data_root = 'Dataset/AES_HD_ext/aes_hd_ext.h5'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_hd_ext(
-            root + data_root, leakage_model=leakage, train_begin=0, train_end=45000, test_begin=0,
-            test_end=nb_traces_attacks)
-    elif dataset == "AES_HD_ext_ID":
-        data_root = 'Dataset/AES_HD_ext/aes_hd_ext.h5'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_hd_ext_id(
-            root + data_root, leakage_model=leakage, train_begin=0, train_end=45000, test_begin=0,
-            test_end=nb_traces_attacks)
-
-    elif dataset == 'AES_RD':
-        data_root = 'Dataset/AES_RD/'
-        (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_rd(root +data_root,leakage_model=leakage, train_begin=0, train_end=20000, test_begin=0,
             test_end=nb_traces_attacks)
 
 

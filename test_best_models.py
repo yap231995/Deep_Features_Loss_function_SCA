@@ -76,12 +76,7 @@ elif dataset == 'ASCAD_desync100':
     (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_ascad(
         root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=50000, test_begin=0,
         test_end=nb_traces_attacks)
-elif dataset == 'ASCAD_k0':
-    byte = 0
-    data_root = 'Dataset/ASCAD/ASCAD_k0.h5'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_ascad(
-        root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=50000, test_begin=0,
-        test_end=nb_traces_attacks)
+
 elif dataset == 'ASCAD_variable':
     byte = 2
     data_root = 'Dataset/ASCAD/ASCAD_variable.h5'
@@ -107,36 +102,7 @@ elif dataset == 'CTF2018':
     (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_ctf(
         root + data_root, leakage_model=leakage, byte=byte, train_begin=0, train_end=45000, test_begin=0,
         test_end=nb_traces_attacks)
-elif dataset == 'Chipwhisperer':
-    data_root = 'Dataset/Chipwhisperer/'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (
-        plt_profiling, plt_attack), correct_key = load_chipwhisperer(
-        root + data_root + '/', leakage_model=leakage)
-elif dataset == 'Chipwhisperer_desync25':
-    data_root = 'Dataset/Chipwhisperer/'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (
-    plt_profiling, plt_attack), correct_key = load_chipwhisperer_desync(root + data_root + '/', desync_lvl=25,
-                                                                        leakage_model=leakage)
-elif dataset == 'Chipwhisperer_desync50':
-    data_root = 'Dataset/Chipwhisperer/'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (
-    plt_profiling, plt_attack), correct_key = load_chipwhisperer_desync(root + data_root + '/', desync_lvl=50,
-                                                                        leakage_model=leakage)
-elif dataset == 'AES_HD_ext':
-    data_root = 'Dataset/AES_HD_ext/aes_hd_ext.h5'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_hd_ext(
-        root + data_root, leakage_model=leakage, train_begin=0, train_end=45000, test_begin=0,
-        test_end=nb_traces_attacks)
-elif dataset == "AES_HD_ext_ID":
-    data_root = 'Dataset/AES_HD_ext/aes_hd_ext.h5'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_hd_ext_id(
-        root + data_root, leakage_model=leakage, train_begin=0, train_end=45000, test_begin=0,
-        test_end=nb_traces_attacks)
-elif dataset == 'AES_RD':
-    data_root = 'Dataset/AES_RD/'
-    (X_profiling, X_attack), (Y_profiling, Y_attack), (plt_profiling, plt_attack), correct_key = load_aes_rd(
-        root + data_root, leakage_model=leakage, train_begin=0, train_end=20000, test_begin=0,
-        test_end=nb_traces_attacks)
+
 
 if leakage == 'HW':
     classes = 9
@@ -173,18 +139,16 @@ else:
 """ Train model """
 
 ##BASE LOSS
-if loss_type == 'categorical_crossentropy' or loss_type == 'center_loss' or loss_type == 'soft_nn' or loss_type == "max_soft_nn":
+if loss_type == 'categorical_crossentropy' or loss_type == 'center_loss' or loss_type == 'soft_nn':
     base_loss_fn = 'categorical_crossentropy'
     base_loss_fn_actual = "categorical_crossentropy"
-elif loss_type == 'flr' or loss_type == "flr_center_loss" or loss_type == "flr_soft_nn" or loss_type == "flr_max_soft_nn":
+elif loss_type == 'flr' or loss_type == "flr_center_loss" or loss_type == "flr_soft_nn" :
     base_loss_fn = 'flr'
     base_loss_fn_actual = flr_loss(10)
-if loss_type == "center_loss" or loss_type == "soft_nn" or loss_type == "max_soft_nn" or loss_type == "flr_soft_nn" or loss_type == "flr_center_loss" or loss_type == "flr_max_soft_nn":
+if loss_type == "center_loss" or loss_type == "soft_nn" or loss_type == "flr_soft_nn" or loss_type == "flr_center_loss":
     lamb_str = "lamb"
     if loss_type == "soft_nn" or loss_type == "flr_soft_nn":
         lamb_str = "lamb_softnn"
-    elif loss_type == "max_soft_nn" or loss_type == "flr_max_soft_nn":
-        lamb_str = "lamb_maxsoftnn"
     history = train(x_train, to_categorical(y_train, num_classes=classes), x_val,
                     to_categorical(y_val, num_classes=classes), model, epochs, hp["batch_size"], hp[lamb_str],
                     optimizer=get_optimizer(hp["optimizer"], hp["learning_rate"]), base_loss_fn=base_loss_fn)
