@@ -1,0 +1,16 @@
+general:
+  search_id: 0
+  dataset: "ASCAD" # ASCAD #ASCAD_variable #AES_HD_ext #CTF2018
+  nb_traces_attacks: 2000
+  leakage_model: "ID"
+  model_type: "cnn"
+  loss_type: "soft_nn" #center_loss #soft_nn #categorical_crossentropy #flr_soft_nn
+  regularization: False
+  epochs: 50
+  temperature: 100
+
+
+  num_training_index: 0 #used in test_best_models.py and test_hyperparameter.py
+  best_model_idx: 54 #used in test_best_models.py and test_hyperparameter.py
+  hyperparameter_testing_type: "lambda" #used in test_hyperparameter.py
+  hyperparameter_values: 1 #used in test_hyperparameter.py
