@@ -49,7 +49,7 @@ def mlp_random(classes, number_of_samples, loss_type,profiling_label = None, reg
     outputs = Dense(classes, activation='softmax', name='predictions')(x)
     intermediate_layer.append(outputs)
     if loss_type == "soft_nn" or loss_type == "flr_soft_nn":
-        model = Custom_Model([loss_type, hp["temperature"]], inputs, intermediate_layer) #TODO: temperature not yet implement thinking of optimize it to remove this hyperparameter.
+        model = Custom_Model([loss_type, hp["temperature"]], inputs, intermediate_layer)
     elif loss_type == "center_loss" or loss_type == "flr_center_loss":
         model = Custom_Model([loss_type, hp["alpha"], classes, intermediate_layer[-2].shape[1]], inputs,
                              intermediate_layer)
