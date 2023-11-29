@@ -11,20 +11,11 @@ Remarks: soft_nn and center_loss uses categorical cross-entropy (CCE) as the bas
 
 cite us at 
 ```
-@inproceedings{10.1145/3605769.3623996,
-author = {Yap, Trevor and Picek, Stjepan and Bhasin, Shivam},
-title = {Beyond the Last Layer: Deep Feature Loss Functions in Side-Channel Analysis},
-year = {2023},
-isbn = {9798400702624},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3605769.3623996},
-doi = {10.1145/3605769.3623996},
-booktitle = {Proceedings of the 2023 Workshop on Attacks and Solutions in Hardware Security},
-pages = {73–82},
-numpages = {10},
-keywords = {profiling attack, side-channel analysis, loss function, deep features, neural network, deep learning},
-location = {<conf-loc>, <city>Copenhagen</city>, <country>Denmark</country>, </conf-loc>},
-series = {ASHES '23}
+@inproceedings{yap2023beyond,
+  title={Beyond the Last Layer: Deep Feature Loss Functions in Side-channel Analysis},
+  author={Yap, Trevor and Picek, Stjepan and Bhasin, Shivam},
+  booktitle={Proceedings of the 2023 Workshop on Attacks and Solutions in Hardware Security},
+  pages={73--82},
+  year={2023}
 }
 ```
