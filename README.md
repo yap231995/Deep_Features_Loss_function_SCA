@@ -9,7 +9,7 @@ This is the repository for `Beyond Last Layer: Deep Feature Loss function in Sid
 Remarks: soft_nn and center_loss uses categorical cross-entropy (CCE) as the baseline loss function, while flr_soft_nn and flr_center_loss uses focal loss ratio (FLR) as their baseline loss function instead.
 
 
-cite us at 
+Cite us when using this repository using  
 ```
 @inproceedings{yap2023beyond,
   title={Beyond the Last Layer: Deep Feature Loss Functions in Side-channel Analysis},
